@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Enchanted-Trunk — Магазин чарівних артефактів</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="overlay">
+            <h1 class="brand-name">Enchanted-Trunk</h1>
+            <p class="tagline">Чарівні речі для щоденних пригод</p>
+        </div>
+        <div class="top-controls">
+            <button id="toggleSidebar" class="sidebar-toggle" aria-label="Відкрити меню">☰ Меню</button>
+            <button id="openCart" class="cart-btn-top" aria-label="Відкрити кошик">
+                Кошик (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar" id="sidebar" aria-label="Фільтри та розділи">
+            <div class="sidebar-header">
+                <div class="brand-dot" aria-hidden="true"></div>
+                <div>
+                    <div class="sidebar-title">Фільтри</div>
+                    <div class="sidebar-sub">Розділи каталогу</div>
+                </div>
+            </div>
+            <nav class="menu">
+                <button class="menu-item active" data-filter="all">Всі товари</button>
+                <button class="menu-item" data-filter="wands">Палички</button>
+                <button class="menu-item" data-filter="scarves">Шарфи</button>
+                <button class="menu-item" data-filter="souvenirs">Сувеніри</button>
+                <button class="menu-item" data-filter="sets">Набори</button>
+            </nav>
+            <button id="closeSidebar" class="sidebar-close" aria-label="Закрити меню">Закрити</button>
+        </aside>
+
+        <main class="container" id="catalogPage">
+            <h2>Каталог товарів</h2>
+            <div class="grid" id="productGrid"></div>
+        </main>
+
+        <section class="container hidden" id="productPage" aria-live="polite">
+            <button id="backBtn" class="back-btn">← Назад до каталогу</button>
+            <article id="productDetail" class="product-detail"></article>
+
+            <section class="reviews">
+                <h3>Відгуки</h3>
+                <ul id="reviewsList" class="reviews-list"></ul>
+                <form id="reviewForm" class="review-form">
+                    <input type="text" id="reviewInput" placeholder="Ваш відгук..." required />
+                    <button type="submit" class="review-submit">Додати відгук</button>
+                </form>
+            </section>
+        </section>
+    </div>
+
+    <aside id="cartPanel" class="cart hidden" aria-label="Панель кошика">
+        <div class="cart-header">
+            <h3>Ваш кошик</h3>
+            <button id="closeCart" class="cart-close" aria-label="Закрити кошик">×</button>
+        </div>
+        <div id="cartItems" class="cart-items"></div>
+        <div class="cart-footer">
+            <span class="total">Всього: <strong id="cartTotal">0 грн</strong></span>
+            <button id="checkoutBtn" class="checkout-btn">Оформити</button>
+        </div>
+    </aside>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-title">Enchanted-Trunk</div>
+                <div class="footer-sub">Чарівні речі для щоденних пригод</div>
+            </div>
+            <div>
+                <div class="footer-title">Контакти</div>
+                <ul class="footer-list">
+                    <li>enchanted@trunk.com</li>
+                    <li>+380 44 123 45 67</li>
+                    <li>Київ, вул. Чарівна 7</li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Години роботи</div>
+                <ul class="footer-list">
+                    <li>Пн–Пт: 10:00–19:00</li>
+                    <li>Сб: 11:00–17:00</li>
+                    <li>Нд: вихідний</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copy">© 2025 Enchanted-Trunk. All rights reserved.</div>
+    </footer>
+
+    <script src="app.js" defer></script>
+</body>
+
+</html>
