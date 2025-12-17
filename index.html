@@ -1,106 +1,109 @@
 <!DOCTYPE html>
 <html lang="uk">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Enchanted-Trunk — Магазин чарівних артефактів</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enchanted-Trunk | Магічна Крамниця</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
- 
 <body>
 
     <header class="hero">
         <div class="overlay">
             <h1 class="brand-name">Enchanted-Trunk</h1>
-            <p class="tagline">Чарівні речі для щоденних пригод</p>
+            <p class="tagline">Автентичні артефакти для справжніх чарівників</p>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Шукати магічний предмет...">
+            </div>
         </div>
         <div class="top-controls">
-            <button id="toggleSidebar" class="sidebar-toggle" aria-label="Відкрити меню">☰ Меню</button>
-            <button id="openCart" class="cart-btn-top" aria-label="Відкрити кошик">
-                Кошик (<span id="cartCount">0</span>)
-            </button>
+            <button id="toggleSidebar" class="ctrl-btn">☰ Меню</button>
+            <button id="openCart" class="ctrl-btn highlight">🛒 Кошик (<span id="cartCount">0</span>)</button>
         </div>
     </header>
 
-    <div class="layout">
-        <aside class="sidebar" id="sidebar" aria-label="Фільтри та розділи">
-            <div class="sidebar-header">
-                <div class="brand-dot" aria-hidden="true"></div>
-                <div>
-                    <div class="sidebar-title">Фільтри</div>
-                    <div class="sidebar-sub">Розділи каталогу</div>
+    <div class="main-layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-section">
+                <h3>Категорії</h3>
+                <nav class="filter-menu">
+                    <button class="filter-btn active" data-filter="all"> Всі товари</button>
+                    <button class="filter-btn" data-filter="wands"> Палички</button>
+                    <button class="filter-btn" data-filter="clothing"> Одяг</button>
+                    <button class="filter-btn" data-filter="artifacts"> Артефакти</button>
+                    <button class="filter-btn" data-filter="potions"> Зілля</button>
+                </nav>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Сортування</h3>
+                <div class="sort-group">
+                    <button class="sort-btn" id="sortLow"> Ціна: від низької</button>
+                    <button class="sort-btn" id="sortHigh">Ціна: від високої</button>
                 </div>
             </div>
-            <nav class="menu">
-                <button class="menu-item active" data-filter="all">Всі товари</button>
-                <button class="menu-item" data-filter="wands">Палички</button>
-                <button class="menu-item" data-filter="scarves">Шарфи</button>
-                <button class="menu-item" data-filter="souvenirs">Сувеніри</button>
-                <button class="menu-item" data-filter="sets">Набори</button>
-            </nav>
-            <button id="closeSidebar" class="sidebar-close" aria-label="Закрити меню">Закрити</button>
+            <button id="closeSidebar" class="sidebar-close">Закрити</button>
         </aside>
 
-        <main class="container" id="catalogPage">
-            <h2>Каталог товарів</h2>
-            <div class="grid" id="productGrid"></div>
+        <main class="content">
+            <div id="catalogSection">
+                <h2 class="section-title">Магічний асортимент</h2>
+                <div class="product-grid" id="productGrid">
+                    </div>
+            </div>
+
+            <div id="detailSection" class="hidden">
+                <button id="backToCatalog" class="back-link">← Назад до списку</button>
+                <div id="productDetailContent"></div>
+            </div>
         </main>
-
-        <section class="container hidden" id="productPage" aria-live="polite">
-            <button id="backBtn" class="back-btn">← Назад до каталогу</button>
-            <article id="productDetail" class="product-detail"></article>
-
-            <section class="reviews">
-                <h3>Відгуки</h3>
-                <ul id="reviewsList" class="reviews-list"></ul>
-                <form id="reviewForm" class="review-form">
-                    <input type="text" id="reviewInput" placeholder="Ваш відгук..." required />
-                    <button type="submit" class="review-submit">Додати відгук</button>
-                </form>
-            </section>
-        </section>
     </div>
 
-    <aside id="cartPanel" class="cart hidden" aria-label="Панель кошика">
-        <div class="cart-header">
-            <h3>Ваш кошик</h3>
-            <button id="closeCart" class="cart-close" aria-label="Закрити кошик">×</button>
+    <div id="cartOverlay" class="cart-overlay hidden">
+        <div class="cart-modal">
+            <div class="cart-header">
+                <h2>Ваша валіза</h2>
+                <button id="closeCart">✕</button>
+            </div>
+            <div id="cartItems" class="cart-items-body"></div>
+            <div class="cart-footer">
+                <div class="total-row">Разом: <span id="cartTotal">0</span> грн</div>
+                <button id="orderBtn" class="order-button">Підтвердити замовлення</button>
+            </div>
         </div>
-        <div id="cartItems" class="cart-items"></div>
-        <div class="cart-footer">
-            <span class="total">Всього: <strong id="cartTotal">0 грн</strong></span>
-            <button id="checkoutBtn" class="checkout-btn">Оформити</button>
-        </div>
-    </aside>
+    </div>
 
     <footer class="footer">
         <div class="footer-grid">
-            <div>
-                <div class="footer-title">Enchanted-Trunk</div>
-                <div class="footer-sub">Чарівні речі для щоденних пригод</div>
+            <div class="footer-info">
+                <h4>Enchanted-Trunk</h4>
+                <p>Ваш надійний провідник у світі магічних речей. Ми доставляємо по всьому магічному світу та за його межі совиною поштою.</p>
+                <p>Київ, вул. Алея Діаґон, буд. 7</p>
             </div>
-            <div>
-                <div class="footer-title">Контакти</div>
-                <ul class="footer-list">
-                    <li>enchanted@trunk.com</li>
-                    <li>+380 44 123 45 67</li>
-                    <li>Київ, вул. Чарівна 7</li>
+            <div class="footer-links">
+                <h4>Інформація</h4>
+                <ul>
+                    <li>Доставка совами</li>
+                    <li>Повернення проклятих речей</li>
+                    <li>FAQ для маґлів</li>
+                    <li>Вакансії (шукаємо зіллярів)</li>
                 </ul>
             </div>
-            <div>
-                <div class="footer-title">Години роботи</div>
-                <ul class="footer-list">
-                    <li>Пн–Пт: 10:00–19:00</li>
-                    <li>Сб: 11:00–17:00</li>
-                    <li>Нд: вихідний</li>
-                </ul>
+            <div class="footer-contact">
+                <h4>Контакти</h4>
+                <p>Email: owl@enchanted-trunk.com</p>
+                <p>Тел: +380 (44) 9¾-12-34</p>
+                <div class="social-icons">
+                    <span>FB</span> <span>IG</span> <span>TG</span>
+                </div>
             </div>
         </div>
-        <div class="footer-copy">© 2025 Enchanted-Trunk. All rights reserved.</div>
+        <div class="footer-bottom">
+            <p>© 2025 Enchanted-Trunk. Всі права захищені закляттям "Протего".</p>
+        </div>
     </footer>
 
-    <script src="app.js" defer></script>
+    <script src="app.js"></script>
 </body>
-
 </html>
