@@ -190,7 +190,7 @@ function renderProducts() {
                         <span>Детальніше</span>
                     </button>
                     <button class="btn btn-cart" onclick="addToCart(${product.id})">
-                        <span></span>
+                        <span> Купити </span>
                     </button>
                 </div>
             </div>
