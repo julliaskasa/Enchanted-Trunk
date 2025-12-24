@@ -3,107 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enchanted-Trunk | Магічна Крамниця</title>
-    <link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Enchanted Trunk | Магічна Крамниця</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <header class="hero">
-        <div class="overlay">
-            <h1 class="brand-name">Enchanted-Trunk</h1>
-            <p class="tagline">Автентичні артефакти для справжніх чарівників</p>
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Шукати магічний предмет...">
+    <div class="magic-particles" id="magicParticles"></div>
+    
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon"</span>
+                <span class="brand-text">Enchanted Trunk</span>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn search-toggle" id="searchToggle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button class="nav-btn cart-toggle" id="cartToggle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-counter" id="cartCounter">0</span>
+                </button>
             </div>
         </div>
-        <div class="top-controls">
-            <button id="toggleSidebar" class="ctrl-btn">☰ Меню</button>
-            <button id="openCart" class="ctrl-btn highlight">🛒 Кошик (<span id="cartCount">0</span>)</button>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="hero-bg" style="background-image: url('https://i.pinimg.com/1200x/4c/cb/e9/4ccbe924632405a779452545f5a50a6e.jpg')"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-sparkle"></div>
+            <h1 class="hero-title">
+                <span class="title-enchanted">Enchanted</span>
+                <span class="title-trunk">Trunk</span>
+            </h1>
+            <p class="hero-subtitle">Автентичні артефакти для справжніх чарівників</p>
+            <div class="hero-scroll">
+                <span>Scroll Down</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7"></path>
+                </svg>
+            </div>
         </div>
     </header>
 
-    <div class="main-layout">
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-section">
-                <h3>Категорії</h3>
-                <nav class="filter-menu">
-                    <button class="filter-btn active" data-filter="all"> Всі товари</button>
-                    <button class="filter-btn" data-filter="wands"> Палички</button>
-                    <button class="filter-btn" data-filter="clothing"> Одяг</button>
-                    <button class="filter-btn" data-filter="artifacts"> Артефакти</button>
-                    <button class="filter-btn" data-filter="potions"> Зілля</button>
-                </nav>
+
+    <div class="search-panel" id="searchPanel">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Знайти магічний предмет..." autocomplete="off">
+            <button class="search-close" id="searchClose">✕</button>
+        </div>
+    </div>
+
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Магічний каталог</h2>
+                <div class="section-decoration"></div>
+            </div>
+            <div class="categories-tabs">
+                <button class="category-tab active" data-category="all">
+                    <span class="tab-icon"></span>
+                    <span class="tab-text">Всі</span>
+                </button>
+                <button class="category-tab" data-category="wands">
+                    <span class="tab-icon"></span>
+                    <span class="tab-text">Палички</span>
+                </button>
+                <button class="category-tab" data-category="clothing">
+                    <span class="tab-icon"></span>
+                    <span class="tab-text">Одяг</span>
+                </button>
+                <button class="category-tab" data-category="artifacts">
+                    <span class="tab-icon"></span>
+                    <span class="tab-text">Артефакти</span>
+                </button>
+                <button class="category-tab" data-category="potions">
+                    <span class="tab-icon">⚗</span>
+                    <span class="tab-text">Зілля</span>
+                </button>
             </div>
             
-            <div class="sidebar-section">
-                <h3>Сортування</h3>
-                <div class="sort-group">
-                    <button class="sort-btn" id="sortLow"> Ціна: від низької</button>
-                    <button class="sort-btn" id="sortHigh">Ціна: від високої</button>
-                </div>
-            </div>
-            <button id="closeSidebar" class="sidebar-close">Закрити</button>
-        </aside>
-
-        <main class="content">
-            <div id="catalogSection">
-                <h2 class="section-title">Магічний асортимент</h2>
-                <div class="product-grid" id="productGrid">
-                    </div>
-            </div>
-
-            <div id="detailSection" class="hidden">
-                <button id="backToCatalog" class="back-link">← Назад до списку</button>
-                <div id="productDetailContent"></div>
-            </div>
-        </main>
-    </div>
-
-    <div id="cartOverlay" class="cart-overlay hidden">
-        <div class="cart-modal">
-            <div class="cart-header">
-                <h2>Ваша валіза</h2>
-                <button id="closeCart">✕</button>
-            </div>
-            <div id="cartItems" class="cart-items-body"></div>
-            <div class="cart-footer">
-                <div class="total-row">Разом: <span id="cartTotal">0</span> грн</div>
-                <button id="orderBtn" class="order-button">Підтвердити замовлення</button>
+            <!-- Сортування -->
+            <div class="sort-controls">
+                <button class="sort-btn" data-sort="default">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <span>За замовчуванням</span>
+                </button>
+                <button class="sort-btn" data-sort="low">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12l7 7 7-7"></path>
+                    </svg>
+                    <span>Дешевші</span>
+                </button>
+                <button class="sort-btn" data-sort="high">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"></path>
+                    </svg>
+                    <span>Дорожчі</span>
+                </button>
             </div>
         </div>
+    </section>
+
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <div class="modal" id="productModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
     </div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Магічна валіза</h3>
+            <button class="cart-close" id="cartClose">✕</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Разом:</span>
+                <span id="cartTotal" class="cart-total-amount">0 грн</span>
+            </div>
+            <button class="cart-checkout" id="checkoutBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+                <span>Оформити замовлення</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
 
     <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-info">
-                <h4>Enchanted-Trunk</h4>
-                <p>Ваш надійний провідник у світі магічних речей. Ми доставляємо по всьому магічному світу та за його межі совиною поштою.</p>
-                <p>Київ, вул. Алея Діаґон, буд. 7</p>
-            </div>
-            <div class="footer-links">
-                <h4>Інформація</h4>
-                <ul>
-                    <li>Доставка совами</li>
-                    <li>Повернення проклятих речей</li>
-                    <li>FAQ для маґлів</li>
-                    <li>Вакансії (шукаємо зіллярів)</li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Контакти</h4>
-                <p>Email: owl@enchanted-trunk.com</p>
-                <p>Тел: +380 (44) 9¾-12-34</p>
-                <div class="social-icons">
-                    <span>FB</span> <span>IG</span> <span>TG</span>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Enchanted Trunk</h4>
+                    <p>Ваш надійний провідник у світі магічних речей з 1692 року.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">сова</a>
+                        <a href="#" class="social-link">магія</a>
+                        <a href="#" class="social-link">шар</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Інформація</h4>
+                    <ul>
+                        <li><a href="#">Доставка совами</a></li>
+                        <li><a href="#">Повернення</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакти</h4>
+                    <ul>
+                        <li> owl@enchanted-trunk.com</li>
+                        <li> +380 (44) 9¾-12-34</li>
+                        <li> Київ, Алея Діаґон 7</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Enchanted-Trunk. Всі права захищені закляттям "Протего".</p>
+            <div class="footer-bottom">
+                <p>© 2025 Enchanted Trunk. Захищено закляттям Протего </p>
+            </div>
         </div>
     </footer>
 
-    <script src="index.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
